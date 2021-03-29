@@ -1,5 +1,6 @@
 import "./App.css";
 import Search from "./components/search";
+require("dotenv").config();
 
 function App() {
   return (
