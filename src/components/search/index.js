@@ -1,11 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useReducer, useEffect } from "react";
+import styles from "./index.module.css";
 const KEY = process.env.REACT_APP_API_KEY;
 
+const initialState = {
+  queryArray: [],
+  searchResults: [],
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    // case "addQuery":
+    //   return { ...state, queryArray: [...state.queryArray, action.query] };
+    case "setSearchResults":
+      return {
+        ...state,
+        searchResults: [...state.searchResults, action.searchResults],
+      };
+    default:
+      throw new Error();
+  }
+}
 //https://www.googleapis.com/youtube/v3/search?part=snippet&key=${KEY}&type=video&q=blue%20moon
 function Search() {
   const [query, setQuery] = useState("");
-  const [queryArray, setQueryArray] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   function queryHandler(text) {
     setQuery(text);
@@ -17,6 +35,7 @@ function Search() {
     // newQuery - run search on each of them - forEach
     newQuery.forEach((element) => {
       runSearchQuery(element);
+      console.log(state.searchResults, "searchResults");
     });
   }
 
@@ -25,8 +44,11 @@ function Search() {
       `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=${KEY}&type=video&q=${query}`
     );
     let data = await response.json();
-    setQueryArray([...queryArray, data]);
-    setSearchResults(queryArray);
+
+    //prevent duplicates:
+    // if (state.searchResults.includes(data.items[0]))
+
+    dispatch({ type: "setSearchResults", searchResults: data.items[0] });
   }
 
   return (
@@ -38,12 +60,28 @@ function Search() {
         onChange={(e) => queryHandler(e.target.value)}
       ></textarea>
       <button onClick={runSearch}>search</button>
-
-      {searchResults.length > 0
-        ? searchResults.map((item) => {
-            return <p key={item.snippet.title}>{item.snippet.title}</p>;
-          })
-        : ""}
+      <div>
+        {state.searchResults.length > 1
+          ? state.searchResults.map((item) => {
+              return (
+                <div className={styles.panel}>
+                  <p key={item.snippet.title}>{item.snippet.title}</p>
+                  <img
+                    src={item.snippet.thumbnails.default.url}
+                    alt="video thumbnail"
+                  />
+                  <button className={styles.watchButton}>
+                    <a
+                      href={`https://www.youtube.com/watch?v=${item.id.videoId}`}
+                    >
+                      watch📺
+                    </a>
+                  </button>
+                </div>
+              );
+            })
+          : ""}
+      </div>
     </>
   );
 }
@@ -54,3 +92,8 @@ export default Search;
 //   `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=${KEY}&type=video&q=${query}`
 // );
 // let data = await response.json();
+
+//render a link button to the generated video, thumbnail image
+
+//one step behind return
+//prevent duplicates into search results
