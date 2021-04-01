@@ -61,7 +61,7 @@ function Search() {
       ></textarea>
       <button onClick={runSearch}>search</button>
       <div>
-        {state.searchResults.length > 1
+        {state.searchResults.length > 0
           ? state.searchResults.map((item) => {
               return (
                 <div className={styles.panel}>

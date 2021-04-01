@@ -1,12 +1,12 @@
 .panel {
   margin: auto;
   border: 2px solid rgb(255, 138, 138);
-  border-radius: 20px;
+  border-radius: 15px;
   max-width: fit-content;
   padding: 10px 10px;
 }
 
 .watchButton {
-  border-radius: 20px;
+  border-radius: 15px;
   border: 2px solid rgb(255, 138, 138);
 }
