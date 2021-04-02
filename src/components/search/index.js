@@ -30,7 +30,7 @@ function Search() {
   }
   async function runSearch() {
     //split the list of queries at commas
-    let newQuery = query.split(", ");
+    let newQuery = query.split(",");
 
     // newQuery - run search on each of them - forEach
     newQuery.forEach((element) => {
@@ -40,15 +40,23 @@ function Search() {
   }
 
   async function runSearchQuery(query) {
+    let data;
     let response = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=${KEY}&type=video&q=${query}`
     );
-    let data = await response.json();
+    if (response.ok) {
+      data = await response.json();
+    } else {
+      throw new Error("Something went wrong");
+    }
 
     //prevent duplicates:
     // if (state.searchResults.includes(data.items[0]))
 
-    dispatch({ type: "setSearchResults", searchResults: data.items[0] });
+    dispatch({
+      type: "setSearchResults",
+      searchResults: data.items[0],
+    });
   }
 
   return (
@@ -65,14 +73,20 @@ function Search() {
           ? state.searchResults.map((item) => {
               return (
                 <div className={styles.panel}>
-                  <p key={item.snippet.title}>{item.snippet.title}</p>
+                  <p key={item.snippet ? item.snippet.title : ""}>
+                    {item.snippet ? item.snippet.title : ""}
+                  </p>
                   <img
-                    src={item.snippet.thumbnails.default.url}
+                    src={
+                      item.snippet ? item.snippet.thumbnails.default.url : ""
+                    }
                     alt="video thumbnail"
                   />
                   <button className={styles.watchButton}>
                     <a
-                      href={`https://www.youtube.com/watch?v=${item.id.videoId}`}
+                      href={`https://www.youtube.com/watch?v=${
+                        item.id ? item.id.videoId : ""
+                      }`}
                     >
                       watch📺
                     </a>
