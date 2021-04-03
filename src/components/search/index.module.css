@@ -7,6 +7,21 @@
 }
 
 .watchButton {
-  border-radius: 15px;
+  background-color: white;
+  border-radius: 10px;
   border: 2px solid rgb(255, 138, 138);
+  padding: 5px 10px;
+  margin: 0.4rem;
+  transition: 0.2s ease-in;
+}
+
+.textInput {
+  border-radius: 10px;
+  min-height: 10vh;
+  outline: none;
+}
+
+.watchButton:hover {
+  background-color: rgb(255, 138, 138);
+  border: 2px solid white;
 }

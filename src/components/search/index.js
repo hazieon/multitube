@@ -9,8 +9,6 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    // case "addQuery":
-    //   return { ...state, queryArray: [...state.queryArray, action.query] };
     case "setSearchResults":
       return {
         ...state,
@@ -20,7 +18,7 @@ function reducer(state, action) {
       throw new Error();
   }
 }
-//https://www.googleapis.com/youtube/v3/search?part=snippet&key=${KEY}&type=video&q=blue%20moon
+
 function Search() {
   const [query, setQuery] = useState("");
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -44,30 +42,32 @@ function Search() {
     let response = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=${KEY}&type=video&q=${query}`
     );
-    if (response.ok) {
-      data = await response.json();
+
+    data = await response.json();
+
+    if (data.items[0]) {
+      console.log(data.items[0]);
+      dispatch({
+        type: "setSearchResults",
+        searchResults: data.items[0],
+      });
     } else {
-      throw new Error("Something went wrong");
+      console.log(query, "not found");
     }
-
-    //prevent duplicates:
-    // if (state.searchResults.includes(data.items[0]))
-
-    dispatch({
-      type: "setSearchResults",
-      searchResults: data.items[0],
-    });
   }
 
   return (
     <>
       <h3>Search with a comma separated list here:</h3>
       <textarea
+        className={styles.textInput}
         type="text"
         placeholder="search..."
         onChange={(e) => queryHandler(e.target.value)}
       ></textarea>
-      <button onClick={runSearch}>search</button>
+      <button className={styles.watchButton} onClick={runSearch}>
+        search
+      </button>
       <div>
         {state.searchResults.length > 0
           ? state.searchResults.map((item) => {
@@ -101,11 +101,6 @@ function Search() {
 }
 
 export default Search;
-
-// let response = await fetch(
-//   `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&key=${KEY}&type=video&q=${query}`
-// );
-// let data = await response.json();
 
 //render a link button to the generated video, thumbnail image
 
