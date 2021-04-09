@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer } from "react";
 import styles from "./index.module.css";
 const KEY = process.env.REACT_APP_API_KEY;
 

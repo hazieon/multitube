@@ -1,7 +1,12 @@
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
 .panel {
   margin: auto;
   border: 2px solid rgb(255, 138, 138);
-  border-radius: 15px;
+  border-radius: 10px;
   max-width: fit-content;
   padding: 10px 10px;
 }
@@ -16,8 +21,9 @@
 }
 
 .textInput {
-  border-radius: 10px;
-  min-height: 10vh;
+  border-radius: 5px;
+  min-height: 15vh;
+  min-width: 30vw;
   outline: none;
 }
 
