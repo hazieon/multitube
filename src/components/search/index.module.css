@@ -9,6 +9,8 @@ body {
   border-radius: 10px;
   max-width: fit-content;
   padding: 10px 10px;
+  margin-bottom: 10px;
+  min-width: 70vw;
 }
 
 .watchButton {
@@ -24,6 +26,8 @@ body {
   border-radius: 5px;
   min-height: 15vh;
   min-width: 30vw;
+  max-width: 80vw;
+  max-height: 70vh;
   outline: none;
 }
 

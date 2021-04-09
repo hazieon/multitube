@@ -102,7 +102,5 @@ function Search() {
 
 export default Search;
 
-//render a link button to the generated video, thumbnail image
-
 //one step behind return
 //prevent duplicates into search results
