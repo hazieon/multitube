@@ -91,6 +91,18 @@ function Search() {
                       watch📺
                     </a>
                   </button>
+                  <button className={styles.watchButton}>
+                    <a
+                      href={`https://savemp3.app/en/download?url=https://www.youtube.com/watch?v=${
+                        item.id ? item.id.videoId : ""
+                      }`}
+                      style={{ display: "table-cell" }}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Download ↴
+                    </a>
+                  </button>
                 </div>
               );
             })
