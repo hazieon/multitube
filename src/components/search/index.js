@@ -58,11 +58,11 @@ function Search() {
 
   return (
     <>
-      <h3>Search with a comma separated list here:</h3>
+      <h3>Watch or download any YouTube video</h3>
       <textarea
         className={styles.textInput}
         type="text"
-        placeholder="search..."
+        placeholder="Search keywords or paste a links here. Comma separated."
         onChange={(e) => queryHandler(e.target.value)}
       ></textarea>
       <button className={styles.watchButton} onClick={runSearch}>
@@ -88,7 +88,7 @@ function Search() {
                         item.id ? item.id.videoId : ""
                       }`}
                     >
-                      watch📺
+                      Watch📺
                     </a>
                   </button>
                   <button className={styles.watchButton}>
