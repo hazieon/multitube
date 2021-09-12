@@ -17,9 +17,9 @@
 }
 
 .heading-text {
-  font-family: "Trade Gothic LT Std Bold", "Trebuchet MS", "Lucida Sans Unicode",
-    "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-  text-shadow: 0px 6px 4px rgb(255, 138, 138);
+  font-family: "Trade Gothic LT Std Bold", "Lucida Sans", Arial, sans-serif,
+    "Lucida Grande", "Trebuchet MS", "Lucida Sans Unicode";
+  /* text-shadow: 0px 6px 4px rgb(255, 138, 138); */
 }
 /* .App-header {
   background-color: #282c34;

@@ -58,16 +58,18 @@ function Search() {
 
   return (
     <>
-      <h3>Watch or download any YouTube video</h3>
-      <textarea
-        className={styles.textInput}
-        type="text"
-        placeholder="Search keywords or paste a links here. Comma separated."
-        onChange={(e) => queryHandler(e.target.value)}
-      ></textarea>
-      <button className={styles.watchButton} onClick={runSearch}>
-        search
-      </button>
+      <h3>Watch or download any YouTube videos easily</h3>
+      <div className={styles.searchContainer}>
+        <textarea
+          className={styles.textInput}
+          type="text"
+          placeholder="Search keywords or paste a links here. Comma separated..."
+          onChange={(e) => queryHandler(e.target.value)}
+        ></textarea>
+        <button className={styles.watchButton} onClick={runSearch}>
+          Go
+        </button>
+      </div>
       <div>
         {state.searchResults.length > 0
           ? state.searchResults.map((item) => {
