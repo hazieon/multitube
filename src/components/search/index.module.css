@@ -28,16 +28,18 @@ body {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   padding: 0.9rem 2rem;
-  font-size: 16px;
+  font-size: 1.5em;
   font-weight: 550;
+  min-width: 10%;
+  line-height: 1.5;
 }
 
 .textInput {
   justify-content: center;
-  border-radius: 3px;
+  border-radius: 5px;
   /* min-height: 15vh;
   max-height: 70vh; */
-  min-width: 60vw;
+  min-width: 50vw;
   width: auto;
 
   outline: 0;
@@ -46,7 +48,7 @@ body {
   /* box-sizing: border-box;
   height: calc(1.5em + 1rem + 2px); */
   display: flex;
-  height: calc(1.5em + 1rem + 2px);
+  height: calc(1.5em + 1rem + 5px);
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -66,8 +68,15 @@ body {
 .searchContainer {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding-top: 2rem;
   padding-bottom: 2rem;
   max-width: 80vw;
   margin: auto;
+}
+
+.searchSubtitle {
+  font-size: 1.6em;
+  font-family: "Trade Gothic LT Std Bold", "Lucida Sans", Arial, sans-serif,
+    "Lucida Grande", "Trebuchet MS", "Lucida Sans Unicode";
 }

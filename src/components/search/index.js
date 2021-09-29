@@ -58,7 +58,9 @@ function Search() {
 
   return (
     <>
-      <h3>Watch or download any YouTube videos easily</h3>
+      <h3 className={styles.searchSubtitle}>
+        Watch or download any YouTube videos easily
+      </h3>
       <div className={styles.searchContainer}>
         <textarea
           className={styles.textInput}
